@@ -147,12 +147,24 @@
         const resultSection = document.getElementById('resultSection');
         const btnBack = document.getElementById('btnBack');
 
+        // Restore saved birth info
+        const saved = JSON.parse(localStorage.getItem('sajuBirth') || 'null');
+        if (saved) {
+            document.getElementById('birthYear').value = saved.year;
+            document.getElementById('birthMonth').value = saved.month;
+            document.getElementById('birthDay').value = saved.day;
+            document.getElementById('birthHour').value = saved.hour;
+        }
+
         form.addEventListener('submit', function(e) {
             e.preventDefault();
             const year = parseInt(document.getElementById('birthYear').value);
             const month = parseInt(document.getElementById('birthMonth').value);
             const day = parseInt(document.getElementById('birthDay').value);
             const hour = parseInt(document.getElementById('birthHour').value);
+
+            // Save to localStorage
+            localStorage.setItem('sajuBirth', JSON.stringify({ year, month, day, hour }));
 
             const result = calculateSaju(year, month, day, hour);
             displayResult(result);
