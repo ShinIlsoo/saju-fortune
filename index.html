@@ -203,7 +203,7 @@
             if (e.target.id === 'zodiacHelpBtn' || e.target.classList.contains('zodiac-help-btn')) {
                 zodiacModal.classList.add('active');
             }
-            if (e.target.id === 'modalClose') {
+            if (e.target.closest('#modalClose')) {
                 zodiacModal.classList.remove('active');
             }
             if (e.target === zodiacModal) {
